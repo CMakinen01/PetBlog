@@ -1,21 +1,17 @@
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
 module.exports = {
   siteMetadata: {
-    title: `My Pet Blog`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: "My First Gatsby Site",
   },
   plugins: [
-    "gatsby-plugin-mdx",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: "pages",
-        path: "./src/pages/"
+        name: `blog`,
+        path: `${__dirname}/blog`,
       }
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp"
-  ]
+    "gatsby-plugin-mdx",
+  ],
 };
