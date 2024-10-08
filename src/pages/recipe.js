@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {graphql} from 'gatsby'
+import {graphql, Link} from 'gatsby'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 
@@ -10,18 +10,21 @@ const RecipePage = ({data}) => {
     <Layout pageTitle="Recipe Page">
       <p>All Recipe Titles.</p>
       <ul>
-        {titles.map((recipe, index) => (
-          <li key={index}>{recipe.title}</li>
+        {titles.map((recipes, index) => (
+          <li key={index}>
+            <Link to= {`/recipe/${recipes.id}`}>{recipes.title} </Link>
+            </li>
         ))}
       </ul>
     </Layout>
   )
 }
 export const query = graphql`
-query MyQuery {
+  query MyQuery {
     Drupal {
       nodeRecipes(first: 100) {
         nodes {
+          id
           title
         }
       }
