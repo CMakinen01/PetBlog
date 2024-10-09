@@ -31,10 +31,12 @@ exports.createPages = async ({graphql, actions}) => {
   }
   `)
 
-  const Template = path.resolve('src/pages/template.js')
-  const ArticleTemplate = path.resolve('src/pages/articles-template.js')
+  const Template = path.resolve('src/templates/template.js')
+  const ArticleTemplate = path.resolve('src/templates/articles-template.js')
 
   resultArticle.data.Drupal.nodeArticles.nodes.forEach(article => {
+    console.log("Creating page for article:", article.id);
+
     createPage({
         path: `/article/${article.id}`,
         component: ArticleTemplate,

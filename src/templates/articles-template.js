@@ -2,8 +2,11 @@ import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 
-const ArticleTemplate = ({ data }) => {
+const ArticleTemplate = ({ data, pageContext }) => {
   const article = data.Drupal.nodeArticle;
+  console.log("Page context:", pageContext); 
+  console.log("Page data:", data); 
+
 
   return (
     <Layout pageTitle={article.title}>

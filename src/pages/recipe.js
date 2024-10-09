@@ -4,14 +4,12 @@ import Layout from '../components/layout'
 import Seo from '../components/seo'
 
 const RecipePage = ({data}) => {
-    const titles = data.Drupal.nodeRecipes.nodes;
-
   return (
     <Layout pageTitle="Recipe Page">
       <p>All Recipe Titles.</p>
       <ul>
-        {titles.map((recipes, index) => (
-          <li key={index}>
+        {data.Drupal.nodeRecipes.nodes.map((recipes) => (
+          <li key={recipes.id}>
             <Link to= {`/recipe/${recipes.id}`}>{recipes.title} </Link>
             </li>
         ))}

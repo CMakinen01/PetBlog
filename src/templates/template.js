@@ -2,8 +2,9 @@ import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 
-const Template = ({ data }) => {
+const Template = ({ data, pageContext }) => {
   const recipe = data.Drupal.nodeRecipe;
+  const {recipe2} = data;
 
   return (
     <Layout pageTitle={recipe.title}>
