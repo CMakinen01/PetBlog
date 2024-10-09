@@ -24,10 +24,11 @@ const ArticleTemplate = ({ data }) => {
 };
 
 export const query = graphql`
-query($articleId: ID!) {   
+query($articlePath: ID!) {   
      Drupal {
-      nodeArticle(id: $articleId) {
+      nodeArticle(id: $articlePath) {
         id
+        path
         author {
           displayName
         }

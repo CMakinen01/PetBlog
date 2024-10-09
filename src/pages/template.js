@@ -38,6 +38,7 @@ export const query = graphql`
       nodeRecipe(id: $recipeId) {
         title
         id
+        path
         difficulty
         cookingTime
         ingredients

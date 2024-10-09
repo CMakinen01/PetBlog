@@ -11,6 +11,7 @@ exports.createPages = async ({graphql, actions}) => {
           nodes {
             title
             id
+            path
           }
         }
       }
@@ -23,6 +24,7 @@ exports.createPages = async ({graphql, actions}) => {
         nodes {
           id
           title
+          path
         }
       }
     }
@@ -37,7 +39,7 @@ exports.createPages = async ({graphql, actions}) => {
         path: `/article/${article.id}`,
         component: ArticleTemplate,
         context: {
-            articleId: article.id,
+            articlePath: article.id,
         },
     })
   })

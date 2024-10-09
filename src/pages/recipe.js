@@ -26,6 +26,7 @@ export const query = graphql`
         nodes {
           id
           title
+          path
         }
       }
     }

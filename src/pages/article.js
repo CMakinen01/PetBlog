@@ -26,6 +26,7 @@ query MyQuery {
         nodes {
           id
           title
+          path
         }
       }
     }
