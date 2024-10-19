@@ -1,0 +1,53 @@
+name: deploy SSH
+on:  [push]
+jobs:
+
+  buildDeploy:
+    name: Build and deploy site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.1
+
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+
+      - name: Install NPM
+        run: npm install
+
+      - name: Install Gatsby
+        run: npm install -g gatsby-cli@2.12.34
+
+      - name: Install Gatsby Dependancies
+        run: npm install gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem gatsby-source-graphql gatsby-plugin-mdx gatsby-transformer-sharp
+
+
+      - name: Build
+        run: gatsby build --prefix-paths
+
+      - name: Verify
+        run: ls -la public
+
+      - name: Copy File With SSH
+        uses: appleboy/scp-action@v0.1.0
+      
+        with:
+            host: ${{ secrets.IP }}
+            username: ${{ secrets.USER }}
+            key: ${{ secrets.PRIVATE_KEY }}
+            port: ${{ secrets.PORT }}
+            source: "./public"
+            target: "/home/student06/site/html/"
+            strip_components: 2
+
+      - name: Restart Docker
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker restart student06
