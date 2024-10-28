@@ -7,7 +7,7 @@ const ArticlePage = ({data}) => {
     const titles = data.Drupal.nodeArticles.nodes;
 
   return (
-    <Layout pageTitle="Recipe Page">
+    <Layout pageTitle="Article Page">
       <p>All Articles.</p>
       <ul>
         {titles.map((articles, index) => (
