@@ -6,7 +6,7 @@ import Seo from '../components/seo'
 const IndexPage = () => {
   return (
     <Layout pageTitle="Home Page">
-      <p>I'm making this by following the Gatsby Tutorial.</p>
+      <p data-testid = "home-page">I'm making this by following the Gatsby Tutorial.</p>
       <p>ACTIONS TEST AGAIN.</p>
       <StaticImage
         alt="Katie, my dog"

@@ -9,10 +9,11 @@ const ArticleTemplate = ({ data, pageContext }) => {
 
 
   return (
-    <Layout pageTitle={article.title}>
+    <Layout>
       {article.mediaImage?.mediaImage?.url && (
         <img src={article.mediaImage.mediaImage.url} alt={article.title} style={{ maxWidth: '100%' }} />
       )}
+      <h1>{article.title}</h1>
 
       <h3>Author: {article.author?.displayName}</h3>
       <p>Published on: {new Date(article.created).toLocaleDateString()}</p>
