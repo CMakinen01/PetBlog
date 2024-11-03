@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "./publc"
+          source: "./public"
           target: "home/student06/site/root"
           strip_components: 2
 
