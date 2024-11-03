@@ -52,7 +52,7 @@ jobs:
       #     script: |
       #       docker restart student06
 
-      - name: Delete temp directory and copy files
+      - name: Delete temp directory
         uses: appleboy/ssh-action@v0.1.4
         with: 
           host: ${{ secrets.IP }}
