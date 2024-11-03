@@ -30,24 +30,62 @@ jobs:
       - name: Verify
         run: ls -la public
 
-      - name: Copy File With SSH
-        uses: appleboy/scp-action@v0.1.0
+      # - name: Copy File With SSH
+      #   uses: appleboy/scp-action@v0.1.0
       
-        with:
-            host: ${{ secrets.IP }}
-            username: ${{ secrets.USER }}
-            key: ${{ secrets.PRIVATE_KEY }}
-            port: ${{ secrets.PORT }}
-            source: "./public"
-            target: "/home/student06/site/html/"
-            strip_components: 2
+      #   with:
+      #       host: ${{ secrets.IP }}
+      #       username: ${{ secrets.USER }}
+      #       key: ${{ secrets.PRIVATE_KEY }}
+      #       port: ${{ secrets.PORT }}
+      #       source: "./public"
+      #       target: "/home/student06/site/html/"
+      #       strip_components: 2
 
-      - name: Restart Docker
+      # - name: Restart Docker
+      #   uses: appleboy/ssh-action@v0.1.4
+      #   with:
+      #     host: ${{ secrets.IP }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.PRIVATE_KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       docker restart student06
+
+      - name: Delete temp directory and copy files
+        uses: appleboy/ssh-action@v0.1.4
+        with: 
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script:
+            rm -rf /home/student06/site/root/*
+            
+      
+      - name: Copy File with SSH
+        uses: appleboy/scp-action@v0.1.0
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "./publc"
+          target: "home/student06/site/root"
+          strip_components: 2
+
+      - name: Move Files Atomically and Start Container
         uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.IP }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          script: |
-            docker restart student06
+          script:
+            rm -rf /home/student06/site/html/*
+            mv /home/student06/site/root/* /home/student06/site/html
+            if [ "$(docker inspect -f '{{.State.Running}}' student06 2>/dev/null)" != "true" ]; then
+              docker start student06
+            fi
+
+

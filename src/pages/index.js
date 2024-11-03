@@ -8,7 +8,7 @@ const IndexPage = () => {
     <Layout pageTitle="Home Page">
       <p data-testid = "home-page">I'm making this by following the Gatsby Tutorial.</p>
       <p>ACTIONS TEST AGAIN.</p>
-      <p>Downtime Test.</p>
+      <p>Atomic Workflow added.</p>
 
       <StaticImage
         alt="Katie, my dog"
