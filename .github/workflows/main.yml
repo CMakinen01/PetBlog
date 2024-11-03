@@ -71,7 +71,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: "./public"
-          target: "home/student06/site/root"
+          target: "home/student06/site/root/"
           strip_components: 2
 
       - name: Move Files Atomically and Start Container
