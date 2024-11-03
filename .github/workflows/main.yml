@@ -83,7 +83,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             rm -rf /home/student06/site/html/*
-            mv /home/student06/site/root/* /home/student06/site/html
+            mv /home/student06/site/root/* /home/student06/site/html/
             if [ "$(docker inspect -f '{{.State.Running}}' student06 2>/dev/null)" != "true" ]; then
               docker start student06
             fi
