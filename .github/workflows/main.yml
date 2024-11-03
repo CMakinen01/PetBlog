@@ -81,7 +81,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          script:
+          script: |
             rm -rf /home/student06/site/html/*
             mv /home/student06/site/root/* /home/student06/site/html
             if [ "$(docker inspect -f '{{.State.Running}}' student06 2>/dev/null)" != "true" ]; then
