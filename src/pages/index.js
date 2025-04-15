@@ -11,7 +11,7 @@ const IndexPage = () => {
       <p>Atomic Workflow added.</p>
 
       <StaticImage
-        alt="Katie, my dog"
+        alt="Katie, my golden doodle"
         src="../images/Dawg.jpeg"
       />
     </Layout>
